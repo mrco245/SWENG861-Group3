@@ -1,0 +1,40 @@
+# Express Server
+## Set Up and Run:
+In the server directory:
+```
+    npm install
+```
+
+Config File - config.env
+
+MONGO_DB_URL : set this to the url to your mongo database 
+JWT_SECRET : a jwt secret used for authenication
+
+To generate run the following command and copy the value and place it in the config.env: 
+
+```
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+```
+
+Then to start the server:
+```
+    npm start
+```
+This will start the server running at http://localhost:3000/
+
+# React/Vite Client
+
+## Set Up and Run 
+
+In the client directory:
+
+```
+    npm install
+```
+
+Then to start the client:
+```
+    npm run dev
+```
+This will start the client here: http://localhost:5173/ 
