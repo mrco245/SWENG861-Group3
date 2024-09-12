@@ -1,8 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import userRoutes from "./routes/user.route.js";
-import authRoutes from "./routes/auth.route.js";
-import cookieParser from "cookie-parser";
+import healthRoute from "./routes/health.route.js";
 
 mongoose
   .connect(process.env.MONGO_DB_URL)
@@ -16,14 +14,12 @@ mongoose
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser());
 
 app.listen(3000, () => {
   console.log("Server is listening on port 3000 !");
 });
 
-app.use("/api/user", userRoutes);
-app.use("/api/auth", authRoutes);
+app.use("health", healthRoute);
 
 //middleware
 app.use((err, req, res, next) => {
