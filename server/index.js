@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 
+if (process.env.NODE_ENV !== 'test') {
 mongoose
   .connect(process.env.MONGO_DB_URL)
   .then(() => {
@@ -13,6 +14,7 @@ mongoose
   .catch((err) => {
     console.log("Failed to connect to MongoDB !", err);
   });
+}
 
 const app = express();
 
@@ -23,7 +25,7 @@ app.listen(3000, () => {
   console.log("Server is listening on port 3000 !");
 });
 
-app.use("health", healthRoute);
+app.use("/api/healthz", healthRoute);
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 
