@@ -8,7 +8,7 @@ const app = new express();
 app.use('/api/healthz', healthRoute);
 
 describe('Health Routes', () => {
-  it('GET /api/healthz should return welcome message', async () => {
+  it('GET /api/healthz should return the app is working', async () => {
     const res = await request(app).get('/api/healthz');
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('message', 'App is working');
