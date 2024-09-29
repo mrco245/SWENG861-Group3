@@ -71,9 +71,7 @@ const Friends = () => {
           <div>Friends List</div>
         </div>
         <div>
-          <ul
-            className={searchResults.length > 0 ? "resultList" : "emptyResults"}
-          >
+          <ul className="resultList">
             {addedFriends.length === 0 ? (
               <li>No friends added yet!</li>
             ) : (
