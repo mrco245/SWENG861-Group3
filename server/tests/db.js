@@ -7,6 +7,9 @@ export const connect = async () => {
    await mongoose.connect(uri);
 }
 export const closeDatabase = async () => {
+
+   await clearDatabase();
+   
    await mongoose.connection.dropDatabase();
    await mongoose.connection.close();
    await (await mongod).stop();
