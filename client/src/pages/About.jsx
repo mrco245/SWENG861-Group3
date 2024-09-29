@@ -2,5 +2,5 @@
 import React from "react";
 
 export default function About() {
-  return <div>About</div>;
+  return <div data-testid="about">About</div>;
 }
