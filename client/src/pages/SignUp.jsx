@@ -40,7 +40,6 @@ export default function SignUp() {
 
       setFormData({});
       setLoading(false);
-
       // Redirect to the signin page
       navigate("/signin");
     } catch (err) {
