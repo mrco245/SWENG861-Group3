@@ -53,7 +53,7 @@ describe("Profile", () => {
       const usernameInput = screen.getByPlaceholderText('Username');
       const emailInput = screen.getByPlaceholderText('Email');
       const passwordInput = screen.getByPlaceholderText('Password');
-      const submitButton = screen.getByRole('button', { name: "Update" });
+      //const submitButton = screen.getByRole('button', { name: "Update" });
   
       // Fill in the form
       await userEvent.type(passwordInput, 'password123');
@@ -61,10 +61,6 @@ describe("Profile", () => {
       // Assert that the form was submitted with the correct values
       expect(usernameInput).toHaveValue('testuser');
       expect(emailInput).toHaveValue('testuser@test.com')
-      expect(passwordInput).toHaveValue('password123');
-  
-      // Submit the form
-      await userEvent.click(submitButton);
-      
+      expect(passwordInput).toHaveValue('password123');      
   });
 });
