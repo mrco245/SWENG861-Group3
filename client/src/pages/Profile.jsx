@@ -13,6 +13,7 @@ import {
 } from "../redux/user/userSlice";
 import StatusAlert, { StatusAlertService } from "react-status-alert";
 import "react-status-alert/dist/status-alert.css";
+import bcryptjs from 'bcryptjs'
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ export default function Profile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
+
+      formData.password = bcryptjs.hashSync(formData.password, 10);
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: "POST",
         headers: {
@@ -40,7 +43,7 @@ export default function Profile() {
         StatusAlertService.showError(data.message);
         dispatch(updateUserFailure(data));
       } else {
-        StatusAlertService.showSuccess("Account Deleted Sucessfully");
+        StatusAlertService.showSuccess("Account Updated Sucessfully");
         dispatch(updateUserSuccess(data));
       }
     } catch (error) {
@@ -61,7 +64,7 @@ export default function Profile() {
         dispatch(deleteUserFailure(data));
         return;
       }
-      StatusAlertService.showSuccess("User Profile Updated Successfully");
+      StatusAlertService.showSuccess("User Profile Deleted Successfully");
       dispatch(deleteUserSuccess(data));
     } catch (error) {
       StatusAlertService.showError(error);

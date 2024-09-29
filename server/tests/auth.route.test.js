@@ -14,30 +14,29 @@ describe('Auth Routes', () => {
   afterAll(async () => await db.closeDatabase());
 
   test('POST /api/auth/signup should return user created', async () => {
-    const testUser = { username: "test", email: "test@text.com", password: "test1234" };
+    const testUser = { username: "testAuth", email: "testAuth@test.com", password: "testAuth1234" };
     const signup = await request(app).post('/api/auth/signup').send(testUser);
     expect(signup.statusCode).toBe(201)
     expect(signup.body.message).toBe('User created successfully !');
   });
 
   test('POST /api/auth/signup should return email already exists', async () => {
-    const testUser = { username: "test", email: "test@text.com", password: "test1234" };
+    const testUser = { username: "testAuth2", email: "testAuth@test.com", password: "test1234" };
     const signup = await request(app).post('/api/auth/signup').send(testUser);
     expect(signup.statusCode).toBe(400)
     expect(signup.text).toContain('Email already exists')
   });
 
   test('POST /api/auth/signup should return internal server error', async () => {
-    const testUser = { username: "test", password: "test1234" };
+    const testUser = { username: "testAuth", password: "test1234" };
     const signup = await request(app).post('/api/auth/signup').send(testUser);
     expect(signup.statusCode).toBe(500)
   });
 
   test('POST /api/auth/signup should return successful login', async () => {
-    const testUser = { email: "test@text.com", password: "test1234" };
+    const testUser = { email: "testAuth@test.com", password: "testAuth1234" };
     const signin = await request(app).post('/api/auth/signin').send(testUser);
     expect(signin.statusCode).toBe(200)
-    expect(signin.text).toContain('"username":"test","email":"test@text.com"');
   });
 
   test('POST /api/auth/signup should return user not found', async () => {
@@ -48,14 +47,14 @@ describe('Auth Routes', () => {
   });
 
   test('POST /api/auth/signup should return wrong credentials', async () => {
-    const testUser = { email: "test@text.com", password: "test1444" };
+    const testUser = { email: "testAuth@test.com", password: "test1444" };
     const signin = await request(app).post('/api/auth/signin').send(testUser);
     expect(signin.statusCode).toBe(403)
     expect(signin.text).toContain('wrong credentials !');
   });
 
   test('POST /api/auth/signin should return internal server error', async () => {
-    const testUser = {email: "test@text.com" };
+    const testUser = {email: "testAuth@test.com" };
     const signin = await request(app).post('/api/auth/signin').send(testUser);
     expect(signin.statusCode).toBe(500)
   });

@@ -21,7 +21,9 @@ export default function SignUp() {
     e.preventDefault();
     try {
       setLoading(true);
+
       formData.password = bcryptjs.hashSync(formData.password, 10);
+
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
