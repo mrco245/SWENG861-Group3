@@ -1,0 +1,87 @@
+/* Main wrapper and container styling */
+.mainWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.container1, .container2 {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+.titleContainer {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Button styling */
+.largeButton {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.largeButton:hover {
+    background-color: #0056b3;
+}
+
+/* Success message styling */
+.feedbackMessage.success {
+    color: #007BFF;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Error message styling */
+.feedbackMessage.error {
+    color: #ff0000;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Result list styling */
+.resultList {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* Circular progress container */
+.circularProgressContainer {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+/* Customize circular progress bar */
+.circularProgressBar .CircularProgressbar-path {
+    stroke: #007BFF;
+}
+
+.circularProgressBar .CircularProgressbar-text {
+    fill: #333;
+    font-size: 16px;
+}
+
+.circularProgressBar .CircularProgressbar-trail {
+    stroke: #d6d6d6;
+}
+
+/* Milestone checkmark */
+.milestoneAchieved {
+    color: green;
+    margin-right: 10px;
+}
