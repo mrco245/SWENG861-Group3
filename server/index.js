@@ -8,7 +8,7 @@ import cors from 'cors'
 import { config } from "./config/config.js";
 import RateLimit from 'express-rate-limit'
 import session from 'express-session'
-
+import lusca from "lusca";
 
 if (process.env.NODE_ENV !== 'test') {
   mongoose
@@ -25,6 +25,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(cors());
 
 const sessionConfig = session({
@@ -50,10 +51,17 @@ var limiter = RateLimit({
 // apply rate limiter to all requests
 app.use(limiter);
 
+app.use("/api/healthz", healthRoute);
+app.use("/api/auth", authRoutes);
+app.use(lusca.csrf())
+
 app.listen(3000, () => {
   console.log("Server is listening on port 3000 !");
 });
 
-app.use("/api/healthz", healthRoute);
+app.get('/api/csrf-token', (req, res) => {
+  res.json({ csrfToken: req.csrfToken() });
+});
+
 app.use("/api/user", userRoutes);
-app.use("/api/auth", authRoutes);
+

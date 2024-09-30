@@ -21,19 +21,27 @@ export default function Profile() {
   const { currentUser, loading } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({});
 
+  const getCookie = async () => {
+    const token = await fetch('/api/csrf-token');
+    return token.json()
+};
+
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const csrfToken = await getCookie();
     try {
       dispatch(updateUserStart());
 
       //formData.password = bcryptjs.hashSync(formData.password, 10);
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: "POST",
+        credentials: 'include',
         headers: {
+          'x-csrf-token': csrfToken.csrfToken,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
@@ -54,9 +62,14 @@ export default function Profile() {
 
   const handleDeleteAccount = async () => {
     try {
+      const csrfToken = await getCookie();
       dispatch(deleteUserStart());
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
+        credentials: 'include',
+        headers: {
+          'x-csrf-token': csrfToken.csrfToken,
+        },
       });
       const data = await res.json();
       if (data.success === false) {
