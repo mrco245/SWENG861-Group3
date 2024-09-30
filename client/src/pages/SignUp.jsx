@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import StatusAlert, { StatusAlertService } from "react-status-alert";
 import "react-status-alert/dist/status-alert.css";
-import bcryptjs from 'bcryptjs'
+//import bcryptjs from 'bcryptjs'
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -22,7 +22,7 @@ export default function SignUp() {
     try {
       setLoading(true);
 
-      formData.password = bcryptjs.hashSync(formData.password, 10);
+      //formData.password = bcryptjs.hashSync(formData.password, 10);
 
       const res = await fetch("/api/auth/signup", {
         method: "POST",

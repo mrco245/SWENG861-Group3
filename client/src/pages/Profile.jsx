@@ -13,7 +13,7 @@ import {
 } from "../redux/user/userSlice";
 import StatusAlert, { StatusAlertService } from "react-status-alert";
 import "react-status-alert/dist/status-alert.css";
-import bcryptjs from 'bcryptjs'
+//import bcryptjs from 'bcryptjs'
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default function Profile() {
     try {
       dispatch(updateUserStart());
 
-      formData.password = bcryptjs.hashSync(formData.password, 10);
+      //formData.password = bcryptjs.hashSync(formData.password, 10);
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: "POST",
         headers: {

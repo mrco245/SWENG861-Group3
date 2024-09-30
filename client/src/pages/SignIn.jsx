@@ -9,7 +9,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import bcryptjs from 'bcryptjs'
+//import bcryptjs from 'bcryptjs'
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -28,7 +28,7 @@ export default function SignIn() {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      formData.password = bcryptjs.hashSync(formData.password, 10);
+      //formData.password = bcryptjs.hashSync(formData.password, 10);
 
       const res = await fetch("/api/auth/signin", {
         method: "POST",
