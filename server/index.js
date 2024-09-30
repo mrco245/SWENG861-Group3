@@ -36,7 +36,7 @@ const sessionConfig = session({
       maxAge: parseInt(config.COOKIE_EXPIRESIN), // Used for expiration time.
       sameSite: 'strict', // Cookies will only be sent in a first-party context. 'lax' is default value for third-parties.
       httpOnly: true, // Mitigate the risk of a client side script accessing the cookie.
-      secure: false // Ensures the browser only sends the cookie over HTTPS. false for localhost.
+      secure: process.env.NODE_ENV === 'production' // Ensures the browser only sends the cookie over HTTPS in production.
   }
 });
 
