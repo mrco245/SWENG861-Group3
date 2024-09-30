@@ -28,32 +28,39 @@ app.use(cookieParser());
 
 app.use(cors());
 
-const sessionConfig = session({
-  secret: config.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  name: 'sessid',
-  cookie: {
+if (process.env.NODE_ENV !== 'test') {
+
+
+  const sessionConfig = session({
+    secret: config.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    name: 'sessid',
+    cookie: {
       maxAge: parseInt(config.COOKIE_EXPIRESIN), // Used for expiration time.
       sameSite: 'strict', // Cookies will only be sent in a first-party context. 'lax' is default value for third-parties.
       httpOnly: true, // Mitigate the risk of a client side script accessing the cookie.
       secure: process.env.NODE_ENV === 'production' // Ensures the browser only sends the cookie over HTTPS in production.
-  }
-});
+    }
+  });
 
-app.use(sessionConfig);
+  app.use(sessionConfig);
 
-var limiter = RateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // max 100 requests per windowMs
-});
+  var limiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // max 100 requests per windowMs
+  });
 
-// apply rate limiter to all requests
-app.use(limiter);
+  // apply rate limiter to all requests
+  app.use(limiter);
+}
 
 app.use("/api/healthz", healthRoute);
 app.use("/api/auth", authRoutes);
-app.use(lusca.csrf())
+if (process.env.NODE_ENV !== 'test') {
+  app.use(lusca.csrf())
+}
+
 
 app.listen(3000, () => {
   console.log("Server is listening on port 3000 !");

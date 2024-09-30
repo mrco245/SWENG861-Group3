@@ -1,10 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import request from 'supertest';
-import express from 'express';
+import express, { json } from 'express';
 
 import healthRoute from '../routes/health.route';
 
 const app = new express();
+app.use(express.json())
+
 app.use('/api/healthz', healthRoute);
 
 describe('Health Routes', () => {

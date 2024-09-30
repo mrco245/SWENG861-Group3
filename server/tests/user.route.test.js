@@ -1,12 +1,10 @@
 import express from 'express';
 import request from 'supertest';
-import { afterAll, afterEach, describe, expect, test } from 'vitest';
+import { afterAll, describe, expect, test } from 'vitest';
 import userRoutes from '../routes/user.route';
 import authRoutes from '../routes/auth.route';
 import cookieParser from "cookie-parser";
 import * as db from './db';
-import jwt from "jsonwebtoken";
-import { config } from '../config/config.js'
 
 const app = new express();
 app.use(express.json());
@@ -27,8 +25,7 @@ describe('User Routes', () => {
 
     const loginUser = await request(app).post('/api/auth/signin').send(testUser);
     const updatedTestUser = { username: "testUser", email: "user@test.com", password: "user2" };
-
-    const updateUser = await request(app).put('/api/user/update/' + loginUser.body._id).send(updatedTestUser).set('Cookie', loginUser.headers['set-cookie'][0]);
+    const updateUser = await request(app).post('/api/user/update/' + loginUser.body._id).send(updatedTestUser).set('Cookie', loginUser.headers['set-cookie'][0]);
     expect(updateUser.statusCode).toBe(200);
   });
 
@@ -40,7 +37,7 @@ describe('User Routes', () => {
     const loginUser = await request(app).post('/api/auth/signin').send(testUser);
     const updatedTestUser = { username: "testUser2", email: "user2@test.com", password: "user22" };
 
-    const updateUser = await request(app).put('/api/user/update/' + loginUser.body._id + 1).send(updatedTestUser).set('Cookie', loginUser.headers['set-cookie'][0]);
+    const updateUser = await request(app).post('/api/user/update/' + loginUser.body._id + 1).send(updatedTestUser).set('Cookie', loginUser.headers['set-cookie'][0]);
     expect(updateUser.statusCode).toBe(401);
     expect(updateUser.text).toContain('You can update only your account!')
   });
@@ -49,7 +46,7 @@ describe('User Routes', () => {
     const testUser = { username: "testUser2", email: "user2@test.com", password: "user2" };
     const loginUser = await request(app).post('/api/auth/signin').send(testUser);
     const updatedTestUser = { username: "testUser2", email: "user2@test.com", password: "user22" };
-    const updateUser = await request(app).put('/api/user/update/' + loginUser.body._id).send(updatedTestUser);
+    const updateUser = await request(app).post('/api/user/update/' + loginUser.body._id).send(updatedTestUser);
     expect(updateUser.statusCode).toBe(401);
     expect(updateUser.text).toContain('You are not authinticated !')
   });
