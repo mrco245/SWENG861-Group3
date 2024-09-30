@@ -8,7 +8,7 @@ import { config } from '../config/config.js'
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
    // Check if the email already exists
-   const existingUser = await User.findOne({ email: req.body.email });
+   const existingUser = await User.findOne({ email: { $eq: req.body.email } });
    if (existingUser) {
     return next(errorHandler(400, "Email already exists"))
    }
