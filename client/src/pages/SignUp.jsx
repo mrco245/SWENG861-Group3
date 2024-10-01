@@ -120,11 +120,29 @@ export default function SignUp() {
               required
             />
           </div>
+          <div className="mb-6">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-gray-600 text-sm mb-2"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword || ""}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Enter your password again"
+              required
+            />
+          </div>
           {/* --------------------sign up btn-------------------- */}
           <div className="btn-div">
             <button
               disabled={
-                !(formData.username && formData.email && formData.password)
+                !(formData.username && formData.email && formData.password && formData.confirmPassword)
               }
               className="signup-btn mx-auto my-auto"
             >
