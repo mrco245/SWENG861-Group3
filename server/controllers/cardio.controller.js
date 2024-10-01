@@ -6,7 +6,7 @@ export const createCardio = ({ body }, res) => {
     Cardio.create(body)
         .then((dbCardioData) => {
             return User.findOneAndUpdate(
-                { _id: body.userId },
+                { _id: { $eq: body.userId } },
                 { $push: { cardio: dbCardioData._id } },
                 { new: true }
             )
