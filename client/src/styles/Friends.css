@@ -1,0 +1,136 @@
+
+.mainWrapper {
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    max-width: 80%;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow-x: hidden;
+    gap: 20px;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  .container1, .container2 {
+    flex: 1;
+    border-radius: 5px;
+    padding: 20px;
+    min-width: 0;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow-y: auto; 
+  }
+  
+  .titleContainer {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .resultList {
+    margin-top: 10px;
+    list-style-type: none;
+    border-radius: 5px;
+    padding: 0;
+    padding: 10px;
+    border: 1px solid grey; 
+  }
+  
+  .emptyResults {
+    border: none;
+  }
+
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  friend {
+    flex-grow: 1;
+  }
+
+  smallButton {
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    color: white;
+    padding: 4px 8px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  smallRedButton {
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff1100;
+    color: white;
+    padding: 4px 8px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  largeButton {
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  smallButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px); 
+  }
+  
+  smallButton:active {
+    transform: translateY(0);
+  }
+
+  smallRedButton:hover {
+    background-color: #740606;
+    transform: translateY(-1px); 
+  }
+  
+  smallRedButton:active {
+    transform: translateY(0);
+  }
+
+  largeButton:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px); 
+  }
+  
+  largeButton:active {
+    transform: translateY(0);
+  }

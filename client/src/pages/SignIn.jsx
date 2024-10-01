@@ -43,7 +43,7 @@ export default function SignIn() {
       if (data.success === false) {
         dispatch(signInFailure(data));
         return StatusAlertService.showError(
-          data.message || "Signin failed. Please try again."
+          data.message || "Sign in failed. Please try again."
         );
       }
       dispatch(signInSuccess(data));
@@ -104,7 +104,7 @@ export default function SignIn() {
               disabled={!(formData.email && formData.password)}
               className="signup-btn mx-auto my-auto"
             >
-              {loading ? "Signing in" : "Signin"}
+              {loading ? "Signing in" : "Sign In"}
             </button>
           </div>
           {/* --------------------signup link-------------------- */}

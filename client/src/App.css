@@ -97,7 +97,31 @@ code {
   font-weight: 800;
   margin-bottom: 1%;
 }
-
+.add-btn {
+    margin-left: 10px;
+    font-weight: 800;
+    margin-bottom: 1%;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    padding: 4px 8px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.small-delete-btn {
+    margin-left: 10px;
+    font-weight: 800;
+    margin-bottom: 1%;
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+    padding: 4px 8px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.add-btn:hover,
 .home-btn:hover,
 .signup-btn:hover,
 .submit-btn:hover {
@@ -340,6 +364,7 @@ code {
   margin: 10px auto;
 }
 
+.small-delete-btn:hover,
 .delete-btn:hover {
   background-color: rgb(211, 5, 5);
 }

@@ -10,7 +10,7 @@ export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const isLoginPage = location.pathname === "/singin";
+  const isLoginPage = location.pathname === "/signin";
   const isSignupPage = location.pathname === "/signup";
   const dispatch = useDispatch();
   const navigate = useNavigate();
