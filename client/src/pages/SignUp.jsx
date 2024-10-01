@@ -121,15 +121,15 @@ export default function SignUp() {
           </div>
           <div className="mb-6">
             <label
-              htmlFor="password"
+              htmlFor="confirmPassword"
               className="block text-gray-600 text-sm mb-2"
             >
               Confirm Password
             </label>
             <input
               type="password"
-              id="confirm-password"
-              name="confirm-password"
+              id="confirmPassword"
+              name="confirmPassword"
               value={formData.confirmPassword || ""}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
