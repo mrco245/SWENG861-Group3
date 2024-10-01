@@ -6,7 +6,7 @@ export const createResistance = ({ body }, res) => {
     Resistance.create(body)
         .then((dbResistanceData) => {
             return User.findOneAndUpdate(
-                { _id: body.userId },
+                { _id: { $eq: body.userId } },
                 { $push: { resistance: dbResistanceData._id } },
                 { new: true }
             )
