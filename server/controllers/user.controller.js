@@ -46,3 +46,16 @@ export const deleteUser = async (req, res, next) => {
   }
 
 }
+
+export const getUser =  async (req, res, next) =>{
+    const foundUser = await User.findById(req.params.id)
+      .select("-__v")
+      .populate("cardio")
+      .populate("resistance")
+
+    if (!foundUser) {
+      return res.status(400).json({ message: 'Cannot find a user with this id!' });
+    }
+
+    res.json(foundUser);
+};

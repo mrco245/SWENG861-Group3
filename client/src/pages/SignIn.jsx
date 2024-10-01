@@ -68,62 +68,50 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div>
       <StatusAlert />
-      <div className="bg-white rounded-2xl -mt-28 p-8 shadow-xl w-full max-w-md">
-        <h2 className="text-3xl font-extrabold text-center mb-6 text-blue-600">
-          Sign In
-        </h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-600 text-sm mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email || ""}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block text-gray-600 text-sm mb-2"
+      <div className="signup d-flex flex-column align-items-center justify-content-center text-center">
+        Sign In
+        <form
+          onSubmit={handleSubmit}
+          className="signup-form d-flex flex-column"
+        >
+          {/* --------------------email-------------------- */}
+          <label htmlFor="email">Email</label>
+          <input
+            className="form-input"
+            value={formData.email}
+            placeholder="youremail@gmail.com"
+            name="email"
+            type="email"
+            onChange={handleChange}
+          />
+
+          {/* -------------------- password-------------------- */}
+          <label htmlFor="password">Password</label>
+          <input
+            className="form-input"
+            value={formData.password}
+            placeholder="********"
+            name="password"
+            type="password"
+            onChange={handleChange}
+          />
+
+          {/* --------------------login btn-------------------- */}
+          <div className="btn-div">
+            <button
+              disabled={!(formData.email && formData.password)}
+              className="signup-btn mx-auto my-auto"
             >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password || ""}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-              placeholder="Enter your password"
-              required
-            />
+              {loading ? "Signing in" : "Signin"}
+            </button>
           </div>
-          <button
-            type="submit"
-            className={`w-full bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none hover:opacity-95 ${
-              loading ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-600"
-            }`}
-            disabled={loading}
-          >
-            {loading ? "Signing In..." : "Sign In"}
-          </button>
+          {/* --------------------signup link-------------------- */}
+          <p className="link-btn">
+            New to HealthFitness? <Link to="/signup">Sign Up</Link>
+          </p>
         </form>
-        <p className="mt-4 text-center text-gray-600">
-          Dont have an account?{" "}
-          <Link to="/signup" className="text-blue-500 hover:underline">
-            Sign Up
-          </Link>
-        </p>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import healthRoute from "./routes/health.route.js";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
+import fitnessRoutes from './routes/fitness.route.js'
 import cookieParser from "cookie-parser";
 import cors from 'cors'
 import { config } from "./config/config.js";
@@ -30,7 +31,6 @@ app.use(cors());
 
 if (process.env.NODE_ENV !== 'test') {
 
-
   const sessionConfig = session({
     secret: config.SESSION_SECRET,
     resave: false,
@@ -46,17 +46,20 @@ if (process.env.NODE_ENV !== 'test') {
 
   app.use(sessionConfig);
 
-  var limiter = RateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // max 100 requests per windowMs
-  });
-
-  // apply rate limiter to all requests
-  app.use(limiter);
+  if (process.env.NODE_ENV === 'production') {
+    var limiter = RateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100, // max 100 requests per windowMs
+      message: 'Too many requests from this IP, please try again later.'
+    });
+    // apply rate limiter to all requests
+    app.use(limiter);
+  }
 }
 
 app.use("/api/healthz", healthRoute);
 app.use("/api/auth", authRoutes);
+
 if (process.env.NODE_ENV !== 'test') {
   app.use(lusca.csrf())
 }
@@ -71,4 +74,5 @@ app.get('/api/csrf-token', (req, res) => {
 });
 
 app.use("/api/user", userRoutes);
+app.use("/api/fitness", fitnessRoutes);
 

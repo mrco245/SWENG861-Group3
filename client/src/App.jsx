@@ -6,6 +6,12 @@ import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile";
+import Cardio from "./components/Cadio";
+import Fitness from "./pages/Fitness";
+import Resistance from "./components/Resistence";
+import SingleExercise from "./components/SingleExercise";
+import FitnessHistory from "./pages/FitnessHistory";
+import './App.css'
 
 export default function App() {
   return (
@@ -18,6 +24,11 @@ export default function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
+          <Route path="/fitness" element={<Fitness />}/>
+          <Route path="/fitness/history" element={<FitnessHistory />}/>
+          <Route path="/fitness/cardio" element={<Cardio />}/>
+          <Route path="/fitness/resistance" element={<Resistance />}/>
+          <Route path="/fitness/:type/:id" element={<SingleExercise />} />
         </Route>
       </Routes>
     </BrowserRouter>
