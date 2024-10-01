@@ -119,6 +119,24 @@ export default function SignUp() {
               required
             />
           </div>
+          <div className="mb-6">
+            <label
+              htmlFor="password"
+              className="block text-gray-600 text-sm mb-2"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              value={formData.confirmPassword || ""}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              placeholder="Enter your password again"
+              required
+            />
+          </div>
           <button
             type="submit"
             className={`w-full bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none ${
