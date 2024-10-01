@@ -16,13 +16,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    profilePicture: {
-      type: String,
-    },
+    cardio: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cardio"
+    }],
+    resistance: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Resistance"
+    }]
   },
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema, "users");
 
 export default User;
