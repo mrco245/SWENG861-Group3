@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import "../styles/Health.css";  // Ensure the path is correct to health.css
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Health() {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [bmi, setBmi] = useState('');
+  const { currentUser, loading } = useSelector((state) => state.user);
   const [targetBmi, setTargetBmi] = useState(24.9);  // Default healthy BMI target
   const [milestones, setMilestones] = useState([]);
   const [message, setMessage] = useState('');  // For both error and success messages
@@ -92,6 +94,7 @@ export default function Health() {
 
   // Function to save BMI data to the backend
   const saveBmiToBackend = async (bmiValue) => {
+    console.log(currentUser)
     try {
       const response = await fetch("/api/bmi/", {
         method: "POST",
@@ -100,7 +103,7 @@ export default function Health() {
           "x-csrf-token": csrfToken,  // Include CSRF token in headers
         },
         body: JSON.stringify({
-          userId: "66fb72d6c25179876114da63",  // Replace with the logged-in user's ID
+          userId: currentUser._id,  // Replace with the logged-in user's ID
           bmi: bmiValue,
           note: "Auto-generated BMI entry"
         }),
