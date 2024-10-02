@@ -19,6 +19,15 @@ const userSchema = new mongoose.Schema(
     profilePicture: {
       type: String,
     },
+
+     // Add this for BMI tracking
+     bmi: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "BMI"  // Reference the BMI model
+      }
+    ]
+
   },
   { timestamps: true }
 );

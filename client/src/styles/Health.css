@@ -1,87 +1,158 @@
-/* Main wrapper and container styling */
-.mainWrapper {
+:root {
+    --main-color: #b3f12c; /* Green color used for buttons */
+    --second-color: lightskyblue; /* Secondary color */
+  }
+  
+  /* Main layout adjustments for your Health component */
+  .mainWrapper {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 20px;
-}
-
-.container1, .container2 {
+    margin: 20px auto;
+    max-width: 1200px;
+  }
+  
+  /* Styling containers */
+  .container1,
+  .container2 {
     flex: 1;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin: 10px;
-}
-
-.titleContainer {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title container styling */
+  .titleContainer {
+    font-size: 1.90rem;
     text-align: center;
+    margin-bottom: 25px;
     font-weight: bold;
-}
-
-/* Button styling */
-.largeButton {
-    background-color: #007BFF;
+    color: #333;
+  }
+  
+  /* Large button styling */
+  .largeButton {
+    background-color: var(--main-color); /* Keeping your green button */
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
+    border-radius: 30px;  /* Rounded corners */
+    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-bottom: 20px;
-}
-
-.largeButton:hover {
-    background-color: #0056b3;
-}
-
-/* Success message styling */
-.feedbackMessage.success {
-    color: #007BFF;
-    font-size: 18px;
-    margin-top: 20px;
-}
-
-/* Error message styling */
-.feedbackMessage.error {
-    color: #ff0000;
-    font-size: 18px;
-    margin-top: 20px;
-}
-
-/* Result list styling */
-.resultList {
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px; 
+  }
+  
+  .largeButton:hover {
+    background-color: #9cd326; /* Slightly darker green on hover */
+  }
+  
+  .feedbackMessage {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: #28a745; /* Green for success */
+    text-align: center;
+  }
+  
+  .resultList {
     list-style-type: none;
     padding: 0;
-    margin-top: 20px;
-}
-
-/* Circular progress container */
-.circularProgressContainer {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
-}
-
-/* Customize circular progress bar */
-.circularProgressBar .CircularProgressbar-path {
-    stroke: #007BFF;
-}
-
-.circularProgressBar .CircularProgressbar-text {
-    fill: #333;
-    font-size: 16px;
-}
-
-.circularProgressBar .CircularProgressbar-trail {
-    stroke: #d6d6d6;
-}
-
-/* Milestone checkmark */
-.milestoneAchieved {
-    color: green;
+    font-size: 1.1rem;
+    /* color: #333; */
+  }
+  
+  .resultList li {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .resultList li span {
     margin-right: 10px;
-}
+  }
+  
+  .milestoneAchieved {
+    color: #28a745;  /* Checkmark color */
+  }
+  
+  /* Circular Progress Bar styling */
+  .circularProgressContainer {
+    width: 150px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  
+  .circularProgressBar {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Force green color for the progress path */
+  .circularProgressContainer .CircularProgressbar .CircularProgressbar-path {
+    stroke: var(--main-color); /* Green color */
+  }
+  
+  /* Trail (background) */
+  .circularProgressContainer .CircularProgressbar .CircularProgressbar-trail {
+    stroke: #eee; /* Light gray background */
+  }
+  
+  /* Progress percentage text */
+  .circularProgressContainer .CircularProgressbar .CircularProgressbar-text {
+    fill: black; /* Black text */
+    font-size: 1.25em; /* Adjusted font size */
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+  }
+ 
+  
+  /* Title Styling with underline */
+  .title {
+    margin: 30px auto 20px auto;
+    font-weight: 900;
+  }
+  
+  .title:after {
+    content: ""; /* Necessary for the pseudo element to work. */
+    display: block; /* Put the pseudo element on its own line. */
+    margin: 0 auto; /* Center the border. */
+    width: 100%; /* Length of border */
+    padding-top: 3px; /* Space between the element and the border. */
+    border-bottom: 2px solid var(--main-color); /* Green underline */
+  }
+
+  /* Remove default blue border and add green border on input focus */
+input:focus {
+    border-color: var(--main-color); /* Green border on focus */
+    outline: none; /* Remove the blue outline */
+    box-shadow: 0 0 5px var(--main-color); /* Optional: add a green shadow for focus effect */
+  }
+  
+  .home-btn,
+  .signup-btn,
+  .submit-btn {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 46px;
+    border-radius: 20px;
+    background-color: var(--main-color);
+    font-weight: 800;
+    margin-bottom: 5%;
+    font-size: 16px;
+    margin-top: 5%;
+  }
+  
+  .home-btn:hover,
+  .signup-btn:hover,
+  .submit-btn:hover {
+    background-color: #9cd326; /* Slightly darker on hover */
+  }
+  
