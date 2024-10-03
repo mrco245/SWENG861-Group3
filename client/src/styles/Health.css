@@ -1,220 +1,234 @@
 :root {
-    --main-color: #b3f12c; /* Green color used for buttons */
-    --second-color: lightskyblue; /* Secondary color */
-  }
-  
-  /* Main layout adjustments for your Health component */
-  .mainWrapper {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 1200px;
-  }
-  
-  /* Styling containers */
-  .container1,
-  .container2 {
-    flex: 1;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Title container styling */
-  .titleContainer {
-    font-size: 1.90rem;
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  /* Large button styling */
-  .largeButton {
-    background-color: var(--main-color); /* Keeping your green button */
-    color: white;
-    border: none;
-    border-radius: 30px;  /* Rounded corners */
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    margin-top: 20px; 
-  }
-  
-  .largeButton:hover {
-    background-color: #9cd326; /* Slightly darker green on hover */
-  }
-  
-  .feedbackMessage {
-    font-size: 1.1rem;
-    margin-top: 10px;
-    color: #28a745; /* Green for success */
-    text-align: center;
-  }
-  
-  .resultList {
-    list-style-type: none;
-    padding: 0;
-    font-size: 1.1rem;
-    /* color: #333; */
-  }
-  
-  .resultList li {
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-  }
-  
-  .resultList li span {
-    margin-right: 10px;
-  }
-  
-  .milestoneAchieved {
-    color: #28a745;  /* Checkmark color */
-  }
-  
-  /* Circular Progress Bar styling */
-  .circularProgressContainer {
-    width: 150px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-  }
-  
-  .circularProgressBar {
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* Force green color for the progress path */
-  .circularProgressContainer .CircularProgressbar .CircularProgressbar-path {
-    stroke: var(--main-color); /* Green color */
-  }
-  
-  /* Trail (background) */
-  .circularProgressContainer .CircularProgressbar .CircularProgressbar-trail {
-    stroke: #eee; /* Light gray background */
-  }
-  
-  /* Progress percentage text */
-  .circularProgressContainer .CircularProgressbar .CircularProgressbar-text {
-    fill: black; /* Black text */
-    font-size: 1.25em; /* Adjusted font size */
-    font-family: "Arial", sans-serif;
-    font-weight: bold;
-  }
- 
-  
-  /* Title Styling with underline */
-  .title {
-    margin: 30px auto 20px auto;
-    font-weight: 900;
-  }
-  
-  .title:after {
-    content: ""; /* Necessary for the pseudo element to work. */
-    display: block; /* Put the pseudo element on its own line. */
-    margin: 0 auto; /* Center the border. */
-    width: 100%; /* Length of border */
-    padding-top: 3px; /* Space between the element and the border. */
-    border-bottom: 2px solid var(--main-color); /* Green underline */
-  }
+  --main-color: #b3f12c; /* Green color used for buttons */
+  --second-color: lightskyblue; /* Secondary color */
+}
 
-  /* Remove default blue border and add green border on input focus */
+/* Main layout adjustments for your Health component */
+.mainWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+/* Styling containers */
+.container1,
+.container2 {
+  flex: 1;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title container styling */
+.titleContainer {
+  font-size: 1.90rem;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Large button styling */
+.largeButton {
+  background-color: var(--main-color); /* Keeping your green button */
+  color: white;
+  border: none;
+  border-radius: 30px;  /* Rounded corners */
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 20px; 
+}
+
+.largeButton:hover {
+  background-color: #9cd326; /* Slightly darker green on hover */
+}
+
+.feedbackMessage {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: #28a745; /* Green for success */
+  text-align: center;
+}
+
+.resultList {
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.1rem;
+  /* color: #333; */
+}
+
+.resultList li {
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.resultList li span {
+  margin-right: 10px;
+}
+
+.milestoneAchieved {
+  color: #28a745;  /* Checkmark color */
+}
+
+/* Circular Progress Bar styling */
+.circularProgressContainer {
+  width: 150px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.circularProgressBar {
+  width: 100%;
+  height: 100%;
+}
+
+/* Force green color for the progress path */
+.circularProgressContainer .CircularProgressbar .CircularProgressbar-path {
+  stroke: var(--main-color); /* Green color */
+}
+
+/* Trail (background) */
+.circularProgressContainer .CircularProgressbar .CircularProgressbar-trail {
+  stroke: #eee; /* Light gray background */
+}
+
+/* Progress percentage text */
+.circularProgressContainer .CircularProgressbar .CircularProgressbar-text {
+  fill: black; /* Black text */
+  font-size: 1.25em; /* Adjusted font size */
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+}
+
+
+/* Title Styling with underline */
+.title {
+  margin: 30px auto 20px auto;
+  font-weight: 900;
+}
+
+.title:after {
+  content: ""; /* Necessary for the pseudo element to work. */
+  display: block; /* Put the pseudo element on its own line. */
+  margin: 0 auto; /* Center the border. */
+  width: 100%; /* Length of border */
+  padding-top: 3px; /* Space between the element and the border. */
+  border-bottom: 2px solid var(--main-color); /* Green underline */
+}
+
+/* Remove default blue border and add green border on input focus */
 input:focus {
-    border-color: var(--main-color); /* Green border on focus */
-    outline: none; /* Remove the blue outline */
-    box-shadow: 0 0 5px var(--main-color); /* Optional: add a green shadow for focus effect */
-  }
-  
-  .home-btn,
-  .signup-btn,
-  .submit-btn {
-    border: none;
-    outline: none;
-    width: 100%;
-    height: 46px;
-    border-radius: 20px;
-    background-color: var(--main-color);
-    font-weight: 800;
-    margin-bottom: 5%;
-    font-size: 16px;
-    margin-top: 5%;
-  }
-  
-  .home-btn:hover,
-  .signup-btn:hover,
-  .submit-btn:hover {
-    background-color: #9cd326; /* Slightly darker on hover */
-  }
-  
-  .homepage {
-    height: 100vh; /* Full viewport height */
-    width: 100vw;
-    display: flex;
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
-    padding:0;
-  }
-  
+  border-color: var(--main-color); /* Green border on focus */
+  outline: none; /* Remove the blue outline */
+  box-shadow: 0 0 5px var(--main-color); /* Optional: add a green shadow for focus effect */
+}
+
+.home-btn,
+.signup-btn,
+.submit-btn {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 46px;
+  border-radius: 20px;
+  background-color: var(--main-color);
+  font-weight: 800;
+  margin-bottom: 5%;
+  font-size: 16px;
+  margin-top: 5%;
+}
+
+.home-btn:hover,
+.signup-btn:hover,
+.submit-btn:hover {
+  background-color: #9cd326; /* Slightly darker on hover */
+}
+
+.homepage {
+  height: 100vh; /* Full viewport height */
+  width: 100vw;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  padding:0;
+  margin-top: -150px;
+}
+
+.home-content {
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.health-icon {
+  width: 250px; /* Adjust the size of the image */
+  height: auto;
+  margin: 20px auto;
+  margin-bottom: 20px;
+}
+
+.home-title {
+  font-weight: 900;
+  font-size: 2rem; /* Larger title */
+  margin-bottom: 20px;
+}
+
+.home-text {
+  margin: 10px auto 30px auto;
+  font-size: 20px; /* Increase text size */
+}
+
+.home-btn {
+  border: none;
+  outline: none;
+  width: 250px;  /* Make the button larger */
+  height: 60px;  /* Increase the height */
+  border-radius: 30px;
+  background-color: var(--main-color);
+  font-weight: 800;
+  font-size: 18px; /* Larger text */
+  margin-bottom: 20px; /* Space between buttons */
+}
+
+.home-btn:hover {
+  background-color: #9cd326;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+
+@media (max-width: 768px) { /* For tablets and smaller devices */
   .home-content {
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+      width: 100%; /* Full width on smaller screens */
+      padding: 10px; /* Adjust padding */
   }
+}
 
-  html, body {
-    height: 100%;
-    margin:0;
-  }
-  
-  .health-icon {
-    width: 250px; /* Adjust the size of the image */
-    height: auto;
-    margin: 20px auto;
-    margin-bottom: 20px;
-  }
-  
+@media (max-width: 480px) { /* For mobile devices */
   .home-title {
-    font-weight: 900;
-    font-size: 2rem; /* Larger title */
-    margin-bottom: 20px;
+      font-size: 1.5rem; /* Smaller font size */
   }
-  
-  .home-text {
-    margin: 10px auto 30px auto;
-    font-size: 18px; /* Increase text size */
-  }
-  
   .home-btn {
-    border: none;
-    outline: none;
-    width: 250px;  /* Make the button larger */
-    height: 60px;  /* Increase the height */
-    border-radius: 30px;
-    background-color: var(--main-color);
-    font-weight: 800;
-    font-size: 18px; /* Larger text */
-    margin-bottom: 20px; /* Space between buttons */
+      width: 100%; /* Full width buttons */
+      margin-bottom: 10px; /* Adjust button spacing */
   }
-  
-  .home-btn:hover {
-    background-color: #9cd326;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-
+}

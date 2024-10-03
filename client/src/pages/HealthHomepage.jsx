@@ -8,8 +8,8 @@ export default function HealthHomepage() {
   const navigate = useNavigate();
 
   return (
-    <Container className="homepage">
-      <div className="home-content d-flex flex-column align-items-center justify-content-center flex-wrap text-center">
+    <div className="homepage">
+      <div className="d-flex flex-column align-items-center justify-content-center flex-wrap text-center">
         <h1 className="home-title">Your Health & BMI Tracker</h1>
         <img
           src={healthIcon}
@@ -34,6 +34,6 @@ export default function HealthHomepage() {
         </button>
         </div>
       </div>
-    </Container>
+    </div>
   );
 }
