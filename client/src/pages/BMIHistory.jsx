@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import "../styles/BMIHistory.css"; // Make sure this path is correct
+import "../styles/BMIHistory.css";
 
 export default function BMIHistory() {
   const { currentUser } = useSelector((state) => state.user);

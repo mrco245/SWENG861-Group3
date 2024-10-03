@@ -56,7 +56,7 @@ export const deleteBmi = ({ params }, res) => {
         .catch((err) => res.status(500).json(err));
 };
 
-
+// Get All BMI Entries
 export const getAllBmiEntries = (req, res) => {
     BMI.find()
         .then((dbBmiData) => {

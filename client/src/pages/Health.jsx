@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Health.css";  // Ensure the path is correct to health.css
+import "../styles/Health.css";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useSelector, useDispatch } from "react-redux";

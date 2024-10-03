@@ -3,7 +3,7 @@
   --second-color: lightskyblue; /* Secondary color */
 }
 
-/* Main layout adjustments for your Health component */
+
 .mainWrapper {
   display: flex;
   justify-content: space-between;
@@ -34,7 +34,7 @@
 
 /* Large button styling */
 .largeButton {
-  background-color: var(--main-color); /* Keeping your green button */
+  background-color: var(--main-color);
   color: white;
   border: none;
   border-radius: 30px;  /* Rounded corners */
@@ -61,7 +61,6 @@
   list-style-type: none;
   padding: 0;
   font-size: 1.1rem;
-  /* color: #333; */
 }
 
 .resultList li {
@@ -107,7 +106,7 @@
 /* Progress percentage text */
 .circularProgressContainer .CircularProgressbar .CircularProgressbar-text {
   fill: black; /* Black text */
-  font-size: 1.25em; /* Adjusted font size */
+  font-size: 1.25em; 
   font-family: "Arial", sans-serif;
   font-weight: bold;
 }
@@ -122,8 +121,8 @@
 .title:after {
   content: ""; /* Necessary for the pseudo element to work. */
   display: block; /* Put the pseudo element on its own line. */
-  margin: 0 auto; /* Center the border. */
-  width: 100%; /* Length of border */
+  margin: 0 auto;
+  width: 100%; 
   padding-top: 3px; /* Space between the element and the border. */
   border-bottom: 2px solid var(--main-color); /* Green underline */
 }
@@ -219,7 +218,7 @@ input:focus {
 @media (max-width: 768px) { /* For tablets and smaller devices */
   .home-content {
       width: 100%; /* Full width on smaller screens */
-      padding: 10px; /* Adjust padding */
+      padding: 10px;
   }
 }
 
@@ -229,6 +228,6 @@ input:focus {
   }
   .home-btn {
       width: 100%; /* Full width buttons */
-      margin-bottom: 10px; /* Adjust button spacing */
+      margin-bottom: 10px; 
   }
 }

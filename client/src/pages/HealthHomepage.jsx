@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Container } from "react-bootstrap"; // Import Bootstrap Container
+import { Container } from "react-bootstrap"; 
 import "../styles/Health.css";
-import healthIcon from "../assets/health.png"; // Ensure the correct path to the image
+import healthIcon from "../assets/health.png";
 
 export default function HealthHomepage() {
   const navigate = useNavigate();
