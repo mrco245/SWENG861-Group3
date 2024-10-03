@@ -27,7 +27,6 @@
     "lusca": "^1.7.0",
     "mongoose": "^8.1.0",
     "nodemon": "^3.0.3",
-    "react-circular-progressbar": "^2.1.0"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.1",
