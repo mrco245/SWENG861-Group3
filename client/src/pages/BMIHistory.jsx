@@ -56,12 +56,12 @@ export default function BMIHistory() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="bmiHistoryContainer">
-      <h1>BMI History</h1>
+    <div className="bmi-history-container">
+      <h1 className="bmi-history-title">BMI History</h1>
       {bmiHistory.length > 0 ? (
-        <ul>
+        <ul className="bmi-history-list">
           {bmiHistory.map((entry, index) => (
-            <li key={index}>
+            <li key={index} className="bmi-history-item">
               <p>Date: {new Date(entry.date).toLocaleDateString()}</p>
               <p>BMI: {entry.bmi.toFixed(2)}</p>
               <p>Note: {entry.note}</p>
