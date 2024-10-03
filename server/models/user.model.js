@@ -16,6 +16,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    friends: {
+        type: Array,
+    },
+    friendRequests: {
+        type: Array,
+    },
+    sentFriendRequests: {
+        type: Array,
+    },
     cardio: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Cardio"

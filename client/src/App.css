@@ -409,11 +409,10 @@ code {
     border-radius: 10px;
     padding: 20px;
     width: 240px;
-    margin-top: 20px;
     margin: 10px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(30px);
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     color: black;
     height: auto;
     overflow-y: auto;
@@ -426,7 +425,9 @@ code {
     max-width: 80%;
     justify-content: space-around;
     align-items: flex-start;
-    padding: 40px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
     box-sizing: border-box;
     margin: 0 auto;
     overflow-x: hidden;

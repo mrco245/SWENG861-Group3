@@ -64,6 +64,8 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(lusca.csrf())
 }
 
+app.use("/api/user", userRoutes);
+app.use("/api/fitness", fitnessRoutes);
 
 app.listen(3000, () => {
   console.log("Server is listening on port 3000 !");
@@ -72,7 +74,4 @@ app.listen(3000, () => {
 app.get('/api/csrf-token', (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
 });
-
-app.use("/api/user", userRoutes);
-app.use("/api/fitness", fitnessRoutes);
 

@@ -57,7 +57,9 @@ export default function Header() {
               <Nav.Link as={Link} to="/profile" eventKey="3">
                 Profile
               </Nav.Link>
-
+              <Nav.Link as={Link} to="/friends" eventKey="4">
+                Friends
+              </Nav.Link>
               <Nav.Link onClick={handleSignOut}>Logout </Nav.Link>
             </Nav>
           </Navbar.Collapse>
