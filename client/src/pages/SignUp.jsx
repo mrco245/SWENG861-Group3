@@ -133,20 +133,27 @@ export default function SignUp() {
               name="confirmPassword"
               value={formData.confirmPassword || ""}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="form-input"
               placeholder="Enter your password again"
               required
             />
           </div>
-          <button
-            type="submit"
-            className={`w-full bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none ${
-              loading ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-600"
-            }`}
-            disabled={loading}
-          >
-            {loading ? "Signing Up..." : "Sign Up"}
-          </button>
+          {/* --------------------sign up btn-------------------- */}
+          <div className="btn-div">
+            <button
+              disabled={
+                !(formData.username && formData.email && formData.password && formData.confirmPassword)
+              }
+              className="signup-btn mx-auto my-auto"
+            >
+              {loading ? "Signing Up" : "Sign Up"}
+            </button>
+          </div>
+
+          {/* --------------------login link-------------------- */}
+          <p className="link-btn">
+            Already have an account? <Link to="/signin">Sign in</Link>
+          </p>
         </form>
       </div>
     </div>

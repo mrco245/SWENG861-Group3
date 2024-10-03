@@ -104,7 +104,7 @@ export default function SignIn() {
               disabled={!(formData.email && formData.password)}
               className="signup-btn mx-auto my-auto"
             >
-              {loading ? "Signing in" : "Sign In"}
+              {loading ? "Signing in" : "Sign in"}
             </button>
           </div>
           {/* --------------------signup link-------------------- */}
