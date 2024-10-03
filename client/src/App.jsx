@@ -6,7 +6,7 @@ import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile";
-import Cardio from "./components/Cadio";
+import Cardio from "./components/Cardio";
 import Fitness from "./pages/Fitness";
 import Resistance from "./components/Resistence";
 import SingleExercise from "./components/SingleExercise";
