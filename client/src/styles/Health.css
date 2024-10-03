@@ -156,3 +156,65 @@ input:focus {
     background-color: #9cd326; /* Slightly darker on hover */
   }
   
+  .homepage {
+    height: 100vh; /* Full viewport height */
+    width: 100vw;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    padding:0;
+  }
+  
+  .home-content {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  html, body {
+    height: 100%;
+    margin:0;
+  }
+  
+  .health-icon {
+    width: 250px; /* Adjust the size of the image */
+    height: auto;
+    margin: 20px auto;
+    margin-bottom: 20px;
+  }
+  
+  .home-title {
+    font-weight: 900;
+    font-size: 2rem; /* Larger title */
+    margin-bottom: 20px;
+  }
+  
+  .home-text {
+    margin: 10px auto 30px auto;
+    font-size: 18px; /* Increase text size */
+  }
+  
+  .home-btn {
+    border: none;
+    outline: none;
+    width: 250px;  /* Make the button larger */
+    height: 60px;  /* Increase the height */
+    border-radius: 30px;
+    background-color: var(--main-color);
+    font-weight: 800;
+    font-size: 18px; /* Larger text */
+    margin-bottom: 20px; /* Space between buttons */
+  }
+  
+  .home-btn:hover {
+    background-color: #9cd326;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+

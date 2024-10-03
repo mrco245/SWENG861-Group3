@@ -5,6 +5,8 @@ import Friends from "./pages/Friends";
 import Health from "./pages/Health";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import HealthHomepage from "./pages/HealthHomepage";
+import BMIHistory from "./pages/BMIHistory";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile";
@@ -20,6 +22,8 @@ export default function App() {
         <Route path='/health' element={<Health />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/healthhomepage' element={<HealthHomepage />} />
+        <Route path='/bmihistory' element={<BMIHistory />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
         </Route>

@@ -56,13 +56,14 @@ export const deleteBmi = ({ params }, res) => {
         .catch((err) => res.status(500).json(err));
 };
 
-export const getAllBmiEntries = ( res) => {
+
+export const getAllBmiEntries = (req, res) => {
     BMI.find()
         .then((dbBmiData) => {
-            if (!dbBmiData) {
-                return res.status(404).json({ message: "No BMI data found!" });
+            if (!dbBmiData || dbBmiData.length === 0) {
+                return res.status(404).json({ message: "No BMI entries found for this user!" });
             }
             res.json(dbBmiData);
         })
-        .catch((err) => res.status(500).json(err));
+        .catch((err) => res.status(500).json({ error: err.message }));
 };
