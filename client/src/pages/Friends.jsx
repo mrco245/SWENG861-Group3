@@ -99,7 +99,7 @@ const Friends = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Error fetching usernames");
+        throw new Error(data.message || data || "Error fetching usernames");
       }
 
       if (data.length === 0) {
@@ -131,7 +131,7 @@ const Friends = () => {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.message || "Error sending friend request.");
+        throw new Error(data.message || data || "Error sending friend request.");
       }
 
       setFriendRequests((prev) => [...prev, name]);
@@ -159,7 +159,7 @@ const Friends = () => {
       });
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.message || "Error accepting friend request");
+        throw new Error(data.message || data || "Error accepting friend request");
       }
 
       setAddedFriends((prev) => [...prev, friendName]);
@@ -189,7 +189,7 @@ const Friends = () => {
       });
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.message || "Error removing friend");
+        throw new Error(data.message || data || "Error removing friend");
       }
 
       setAddedFriends((prev) => prev.filter((f) => f !== friendName));
