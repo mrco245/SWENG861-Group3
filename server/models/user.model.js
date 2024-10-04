@@ -20,14 +20,22 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
 
-     // Add this for BMI tracking
+     
      bmi: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "BMI"  // Reference the BMI model
       }
     ]
-
+,
+    cardio: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cardio"
+    }],
+    resistance: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Resistance"
+    }]
   },
   { timestamps: true }
 );

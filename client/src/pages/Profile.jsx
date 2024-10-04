@@ -84,7 +84,7 @@ export default function Profile() {
       dispatch(deleteUserFailure(error));
     }
   };
-  const handleSignOut = async () => {
+   const handleSignOut = async () => {
     try {
       await fetch("/api/auth/signout");
       dispatch(signOut());
@@ -96,20 +96,18 @@ export default function Profile() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div>
       <StatusAlert />
-      <div className="bg-white p-8 rounded-md shadow-lg w-full max-w-md">
-        <h1 className="text-3xl font-extrabold text-center mb-6 text-blue-600">
+      <div className="signup d-flex flex-column align-items-center justify-content-center text-center">
           Your Profile
-        </h1>
-        <form onSubmit={handleSubmit} className="mb-8">
+        <form onSubmit={handleSubmit} className="signup-form d-flex flex-column">
           <div className="mb-4">
             <input
               type="text"
               id="username"
               placeholder="Username"
               defaultValue={currentUser.username}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="form-input"
               onChange={handleOnChange}
             />
           </div>
@@ -119,7 +117,7 @@ export default function Profile() {
               id="email"
               placeholder="Email"
               defaultValue={currentUser.email}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="form-input"
               onChange={handleOnChange}
             />
           </div>
@@ -128,14 +126,14 @@ export default function Profile() {
               type="password"
               id="password"
               placeholder="Password"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="form-input"
               onChange={handleOnChange}
             />
           </div>
           {/* button for update with hover animation */}
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 transition duration-300"
+            className="signup-btn mx-auto my-auto"
           >
             {loading ? "Loading..." : "Update"}
           </button>

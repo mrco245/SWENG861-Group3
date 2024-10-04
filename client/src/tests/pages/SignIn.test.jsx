@@ -7,14 +7,14 @@ import userEvent from '@testing-library/user-event';
 import SignIn from "../../pages/SignIn";
 
 describe("SignIn", () => {
-  it("renders Singup with store", () => {
+  it("renders Sign in with store", () => {
     renderWithProviders(
       <MemoryRouter>
         <SignIn />
       </MemoryRouter>
     );
     // check if App component render
-    expect(screen.getByRole("heading", {name: "Sign In"})).toBeInTheDocument();
+    expect(screen.getByRole("button", {name: "Sign In"})).toBeInTheDocument();
   });
 
   test("user enters data in form", async () => {
@@ -24,8 +24,8 @@ describe("SignIn", () => {
       </MemoryRouter>
     );
       // Find the form elements
-      const emailInput = screen.getByPlaceholderText('Enter your email');
-      const passwordInput = screen.getByPlaceholderText('Enter your password');
+      const emailInput = screen.getByPlaceholderText('youremail@gmail.com');
+      const passwordInput = screen.getByPlaceholderText('********');
       //const submitButton = screen.getByRole('button', { name: "Sign In" });
   
       // Fill in the form
