@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Container } from "react-bootstrap"; 
 import "../styles/Health.css";
 import healthIcon from "../assets/health.png";
 

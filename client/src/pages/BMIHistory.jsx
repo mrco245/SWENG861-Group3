@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "../styles/BMIHistory.css";
+import { Link } from "react-router-dom";
 
 export default function BMIHistory() {
   const { currentUser } = useSelector((state) => state.user);
@@ -77,8 +78,9 @@ export default function BMIHistory() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="bmi-history-container">
-      <h1 className="bmi-history-title">BMI History</h1>
+    <div className="history">
+      <div className="d-flex flex-column align-items-center">
+      <h3 className="title">BMI History</h3>
       {bmiHistory.length > 0 ? (
         <ul className="bmi-history-list">
           {bmiHistory.map((entry, index) => (
@@ -92,8 +94,15 @@ export default function BMIHistory() {
           ))}
         </ul>
       ) : (
-        <p>No BMI entries found.</p>
+        <div>
+        <h3 className="history-text">No exercise data yet...</h3>
+        <Link to="/health">
+          <button className="home-btn">Calculate BMI</button>
+        </Link>
+      </div>
+        
       )}
+    </div>
     </div>
   );
 }

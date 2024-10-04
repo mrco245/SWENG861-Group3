@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Health from "./pages/Health";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -22,13 +21,8 @@ export default function App() {
       <Header />
       <Routes>
         <Route data-testid="home" path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/health' element={<Health />} />
-        <Route data-testid="about" path='/about' element={<About />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/healthhomepage' element={<HealthHomepage />} />
-        <Route path='/bmihistory' element={<BMIHistory />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path="/fitness" element={<Fitness />}/>
@@ -36,6 +30,9 @@ export default function App() {
           <Route path="/fitness/cardio" element={<Cardio />}/>
           <Route path="/fitness/resistance" element={<Resistance />}/>
           <Route path="/fitness/:type/:id" element={<SingleExercise />} />
+          <Route path='/healthhomepage' element={<HealthHomepage />} />
+          <Route path='/bmihistory' element={<BMIHistory />} />
+          <Route path='/health' element={<Health />} />
         </Route>
       </Routes>
     </BrowserRouter>

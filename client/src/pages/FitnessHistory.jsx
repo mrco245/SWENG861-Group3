@@ -75,7 +75,7 @@ export default function FitnessHistory() {
   }
 
   return (
-    <div className="history">
+    <div>
       <div className="d-flex flex-column align-items-center">
         <h2 className="title">Fitness History</h2>
         {exerciseData.length ? (
