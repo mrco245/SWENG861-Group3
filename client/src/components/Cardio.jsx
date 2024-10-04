@@ -102,10 +102,10 @@ export default function Cardio() {
                     <input type="text" name="name" id="name" placeholder="Running"
                         value={cardioForm.name} onChange={handleCardioChange} />
                     <label >Distance (miles):</label>
-                    <input type="number" name="distance" id="distance" placeholder="0"
+                    <input type="number" name="distance" data-testid="distance" id="distance" placeholder="0"
                         value={cardioForm.distance} onChange={handleCardioChange} />
                     <label >Duration (minutes):</label>
-                    <input type="number" name="duration" id="duration" placeholder="0"
+                    <input type="number" name="duration" data-testid="duration"  id="duration" placeholder="0"
                         value={cardioForm.duration} onChange={handleCardioChange} />
                     <label>Date:</label>
                     <DatePicker selected={startDate} value={cardioForm.date} onChange={handleDateChange} placeholderText="mm/dd/yyyy" />

@@ -20,7 +20,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route data-testid="home" path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
+        <Route data-testid="about" path='/about' element={<About />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route element={<PrivateRoute />}>
