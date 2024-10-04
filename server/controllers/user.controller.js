@@ -76,18 +76,18 @@ export const addFriend = async (req, res, next) => {
     try {
         // Find the friend by username
         const friend = await User.findOne({
-            username: friendUsername
+            username: { $eq: friendUsername }
         });
         if (!friend) {
             return res.status(404).json("User not found.");
         }
         // Compare user IDs instead of usernames
-        if (req.user.id === friend._id) {
+        if (req.user.id === friend.id) {
             return res.status(400).json("You cannot add yourself as a friend!");
         }
 
         const user = await User.findById(req.user.id);
-        if (user.friends.includes(friend._id)) {
+        if (user.friends.includes(friend.id)) {
             return res.status(400).json("This user is already your friend.");
         }
 
@@ -98,7 +98,7 @@ export const addFriend = async (req, res, next) => {
             },
         });
 
-        await User.findByIdAndUpdate(friend._id, {
+        await User.findByIdAndUpdate(friend.id, {
             $addToSet: {
                 friendRequests: user.username
             },
@@ -119,7 +119,7 @@ export const acceptFriendRequest = async (req, res, next) => {
     try {
         // Find the friend by username
         const friend = await User.findOne({
-            username: friendUsername
+            username: { $eq: friendUsername }
         });
         if (!friend) {
             return res.status(404).json("User not found.");
@@ -164,7 +164,7 @@ export const declineFriendRequest = async (req, res, next) => {
     try {
         // Find the friend by username
         const friend = await User.findOne({
-            username: friendUsername
+            username: { $eq: friendUsername }
         });
         if (!friend) {
             return res.status(404).json("User not found.");
