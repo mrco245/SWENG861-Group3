@@ -198,7 +198,7 @@ export const removeFriend = async (req, res, next) => {
     try {
         // Find the friend by username
         const friend = await User.findOne({
-            username: friendUsername
+            username: { $eq: friendUsername }
         });
         if (!friend) {
             return res.status(404).json("User not found.");
