@@ -52,6 +52,27 @@ export default function BMIHistory() {
     fetchBmiHistory();
   }, [csrfToken, currentUser]);
 
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/bmi/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken,
+        },
+      });
+      if (response.ok) {
+        setBmiHistory(bmiHistory.filter(entry => entry._id !== id));
+      } else {
+        throw new Error("Failed to delete BMI entry.");
+      }
+    } catch (err) {
+      setError(err.message);
+      console.error("Error deleting BMI entry:", err);
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -65,6 +86,8 @@ export default function BMIHistory() {
               <p>Date: {new Date(entry.date).toLocaleDateString()}</p>
               <p>BMI: {entry.bmi.toFixed(2)}</p>
               <p>Note: {entry.note}</p>
+              {/* Delete button for each BMI entry */}
+              <button className="delete-btn" onClick={() => handleDelete(entry._id)}>Delete</button>
             </li>
           ))}
         </ul>

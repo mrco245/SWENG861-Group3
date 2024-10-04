@@ -3,8 +3,10 @@ import User from "../models/user.model.js";
 
 // Create BMI
 export const createBmi = ({ body }, res) => {
+    let bmiId = ""
     BMI.create(body)
         .then((dbBmiData) => {
+            bmiId = dbBmiData._id;
             console.log(body)
             return User.findOneAndUpdate(
                 { _id: { $eq: body.userId } },  // Find the user by userId
@@ -16,9 +18,13 @@ export const createBmi = ({ body }, res) => {
             if (!dbUserData) {
                 return res.status(404).json({ message: "BMI created but no user with this id!" });
             }
-            res.json({ message: "BMI entry successfully created!" });
+            console.log(bmiId)
+            res.json({ message: "BMI entry successfully created!", bmiId: bmiId });
         })
-        .catch((err) => res.status(500).json(err));
+        .catch((err) => {
+            console.log(err)
+            res.status(500).json(err)
+        });
 };
 
 // Get BMI by ID

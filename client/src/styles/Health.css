@@ -21,12 +21,14 @@
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 700px;
 }
 
 /* Title container styling */
 .titleContainer {
   font-size: 1.90rem;
   text-align: center;
+  
   margin-bottom: 25px;
   font-weight: bold;
   color: #333;
@@ -57,6 +59,15 @@
   text-align: center;
 }
 
+.form-input {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border-radius: 1px solid #ccc;
+}
+
 .resultList {
   list-style-type: none;
   padding: 0;
@@ -83,7 +94,7 @@
 
 /* Circular Progress Bar styling */
 .circularProgressContainer {
-  width: 150px;
+  width: 175px;
   margin: 0 auto;
   margin-bottom: 20px;
 }

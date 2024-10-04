@@ -47,3 +47,28 @@
     transform: scale(1.03);
     transition: all 0.3s ease-in-out;
 }
+
+/* Delete button styling */
+.delete-btn {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Hover effect for BMI history items */
+.bmi-history-item:hover {
+  background-color: #ecf0f1;
+  transform: scale(1.03);
+  transition: all 0.3s ease-in-out;
+}

@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Friends from "./pages/Friends";
 import Health from "./pages/Health";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -18,7 +17,6 @@ export default function App() {
       <Routes>
         <Route data-testid="home" path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/friends' element={<Friends />} />
         <Route path='/health' element={<Health />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />

@@ -5,7 +5,7 @@ import express from "express";
 const router = express.Router();
 
 // /api/bmi - Create a new BMI entry
-router.post("/",  createBmi);
+router.post("/", verifyToken, createBmi);
 
 // /api/bmi/:id - Get BMI entry by ID
 router.get("/:id", verifyToken, getBmiById);
