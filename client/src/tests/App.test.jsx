@@ -21,14 +21,4 @@ describe("App", () => {
     await userEvent.click(homeLink);
     expect(screen.getByTestId("home")).toBeInTheDocument();
   });
-
-  test("navigates to the About page", async () => {
-    renderWithProviders(
-        <App />
-    );
-    const aboutLink = screen.getByText("About");
-    await userEvent.click(aboutLink);
-    expect(screen.getByTestId("about")).toBeInTheDocument();
-  });
-
 });

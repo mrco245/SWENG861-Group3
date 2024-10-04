@@ -16,6 +16,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    cardio: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Cardio"
+    }],
+    resistance: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Resistance"
+    }]
   },
   { timestamps: true }
 );
