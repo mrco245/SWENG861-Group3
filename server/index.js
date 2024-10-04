@@ -1,15 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
 import healthRoute from "./routes/health.route.js";
+import bmiRoute from "./routes/bmi.route.js";  // Import BMI routes
+import lusca from "lusca";
+import cors from 'cors'
+import cookieParser from "cookie-parser";
+import crypto from 'crypto'
+import session from 'express-session'
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import fitnessRoutes from './routes/fitness.route.js'
-import cookieParser from "cookie-parser";
-import cors from 'cors'
 import { config } from "./config/config.js";
 import RateLimit from 'express-rate-limit'
-import session from 'express-session'
-import lusca from "lusca";
 
 if (process.env.NODE_ENV !== 'test') {
   mongoose
@@ -65,14 +67,36 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 
-app.listen(3000, () => {
-  console.log("Server is listening on port 3000 !");
-});
+
+
 
 app.get('/api/csrf-token', (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
 });
 
+// Use health and BMI routes
+app.use("/health", healthRoute);
+app.use("/api/bmi", bmiRoute);  // Register the BMI routes
 app.use("/api/user", userRoutes);
 app.use("/api/fitness", fitnessRoutes);
+
+
+
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    message,
+    statusCode,
+  });
+});
+
+app.listen(3000, () => {
+  console.log("Server is listening on port 3000 !");
+});
+
+
 

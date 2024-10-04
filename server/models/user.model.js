@@ -16,6 +16,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profilePicture: {
+      type: String,
+    },
+
+     
+     bmi: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "BMI"  // Reference the BMI model
+      }
+    ]
+,
     cardio: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Cardio"

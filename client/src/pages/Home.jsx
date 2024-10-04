@@ -12,9 +12,9 @@ export default function Home() {
   return (
       <Container data-testid="home" className="homepage">
       <div className="home d-flex flex-column align-items-center justify-content-center flex-wrap text-center">
-        <h1 className="home-title">Your Daily Health & Fitness Tracker</h1>
+        <h1 className="home-title">Your Daily Fitness & Health Tracker</h1>
         <p className="home-text">
-          Cardio? Resistance? Or both? Track your daily exercises and stay fit
+          Cardio? Resistance? BMI Check? Or both? Track your daily exercises and BMI count to stay fit!
           with us.
         </p>
         {currentUser ?
@@ -22,6 +22,7 @@ export default function Home() {
             <>
              <button className="home-btn" onClick={() => navigate("/fitness")}>Add Fitness Event</button>
              <button className="home-btn" onClick={() => navigate("/fitness/history")}>Show Fitness History</button>
+             <button className="home-btn" onClick={() => navigate("/healthhomepage")}>Show Health Tracker</button>
             </>
         ) :
           (<button className="home-btn" onClick={() => navigate("/signup")}>Get Started</button>)}
