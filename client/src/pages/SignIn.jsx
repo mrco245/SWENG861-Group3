@@ -80,7 +80,7 @@ export default function SignIn() {
           <label htmlFor="email">Email</label>
           <input
             className="form-input"
-            value={formData.email}
+            value={formData.email || ""}
             placeholder="youremail@gmail.com"
             name="email"
             type="email"
@@ -91,7 +91,7 @@ export default function SignIn() {
           <label htmlFor="password">Password</label>
           <input
             className="form-input"
-            value={formData.password}
+            value={formData.password || ""}
             placeholder="********"
             name="password"
             type="password"
@@ -104,7 +104,7 @@ export default function SignIn() {
               disabled={!(formData.email && formData.password)}
               className="signup-btn mx-auto my-auto"
             >
-              {loading ? "Signing in" : "Sign in"}
+              {loading ? "Signing in" : "Sign In"}
             </button>
           </div>
           {/* --------------------signup link-------------------- */}
