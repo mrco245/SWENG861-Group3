@@ -22,6 +22,7 @@ export default function Home() {
             <>
              <button className="home-btn" onClick={() => navigate("/fitness")}>Add Fitness Event</button>
              <button className="home-btn" onClick={() => navigate("/fitness/history")}>Show Fitness History</button>
+             <button className="home-btn" onClick={() => navigate("/friends")}>View Friends</button>
             </>
         ) :
           (<button className="home-btn" onClick={() => navigate("/signup")}>Get Started</button>)}
