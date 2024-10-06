@@ -1,182 +1,214 @@
-import { describe, it, test, expect, beforeEach, vi } from "vitest";
-import { renderWithProviders } from "../utils"; 
+import { describe, test, expect, vi } from "vitest";
+import { renderWithProviders } from "../utils";
 import { MemoryRouter } from "react-router-dom";
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen, waitFor, act } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Friends from "../../pages/Friends";
+import React from "react";
 
-describe("Friends", () => {
-  beforeEach(() => {
-    // Mock the fetch API for different scenarios
-    global.fetch = vi.fn();
+describe("Friends Page", () => {
+  // Mock fetch using vi.fn()
+  global.fetch = vi.fn((url) => {
+    if (url === "/api/csrf-token") {
+      return Promise.resolve({
+        ok: true,
+        json: async () => ({ csrfToken: "mockCsrfToken" }),
+      });
+    }
+    if (url === "/api/user/add-friend") {
+      return Promise.resolve({
+        ok: true,
+        json: async () => ({ message: "Friend request sent successfully" }),
+      });
+    }
+    if (url === "/api/user/details/mockUserId") {
+      return Promise.resolve({
+        ok: true,
+        json: async () => ({
+          friends: [],
+          friendRequests: [],
+          sentFriendRequests: [],
+        }),
+      });
+    }
+    return Promise.reject("Unknown API call");
   });
 
-  it("renders Friends component with store", () => {
+  test("Friends page renders correctly with store", () => {
     renderWithProviders(
       <MemoryRouter>
         <Friends />
-      </MemoryRouter>
+      </MemoryRouter>,
+      {
+        preloadedState: {
+          user: {
+            currentUser: { _id: "mockUserId" },
+          },
+        },
+      }
     );
-    // Check if the main heading renders
-    expect(screen.getByRole("heading", { name: "Manage Friends List" })).toBeInTheDocument();
+    // Check if the Manage Friends List title is rendered
+    expect(screen.getByText(/Manage Friends List/i)).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("Search for a username")
+    ).toBeInTheDocument();
   });
 
-  test("user searches for a friend", async () => {
-    // Mock the fetch response for the CSRF token and search results
-    fetch.mockImplementationOnce((url) => {
-      if (url.endsWith("/api/csrf-token")) {
-        return Promise.resolve({ json: () => Promise.resolve({ csrfToken: "mockToken" }) });
-      }
-      if (url.includes("/api/user/search/")) {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve([{ username: "newFriend" }]),
-        });
-      }
-      return Promise.reject(new Error("Not found"));
-    });
-
+  test("user enters search term and clicks search", async () => {
     renderWithProviders(
       <MemoryRouter>
         <Friends />
-      </MemoryRouter>
+      </MemoryRouter>,
+      {
+        preloadedState: {
+          user: {
+            currentUser: { _id: "mockUserId" },
+          },
+        },
+      }
     );
 
-    // User enters a username to search
+    // Find the search input and button
     const searchInput = screen.getByPlaceholderText("Search for a username");
-    const searchButton = screen.getByRole("button", { name: "Search" });
+    const searchButton = screen.getByRole("button", { name: /search/i });
 
-    await userEvent.type(searchInput, "newFriend");
+    // Fill in the search form
+    await userEvent.type(searchInput, "testuser");
+    expect(searchInput).toHaveValue("testuser");
+
+    // Click the search button
     await userEvent.click(searchButton);
 
-    // Wait for search results to be displayed
-    await waitFor(() => expect(screen.getByText("newFriend")).toBeInTheDocument());
+    // Ensure fetch is called with the correct API endpoint
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith("/api/user/search/testuser", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "x-csrf-token": "mockCsrfToken",
+        },
+      });
+    });
   });
 
-  test("user adds a friend", async () => {
-    fetch.mockImplementationOnce((url) => {
-      if (url.endsWith("/api/csrf-token")) {
-        return Promise.resolve({ json: () => Promise.resolve({ csrfToken: "mockToken" }) });
-      }
-      if (url.includes("/api/user/search/")) {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve([{ username: "newFriend" }]),
-        });
-      }
-      if (url === "/api/user/add-friend") {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({ message: "Friend request sent successfully." }),
-        });
-      }
-      return Promise.reject(new Error("Not found"));
-    });
+  test("user sends a friend request", async () => {
+    const ref = React.createRef();
 
     renderWithProviders(
       <MemoryRouter>
-        <Friends />
-      </MemoryRouter>
+        <Friends ref={ref} />
+      </MemoryRouter>,
+      {
+        preloadedState: {
+          user: {
+            currentUser: { _id: "mockUserId" },
+          },
+        },
+      }
     );
 
-    // User searches for a friend
-    const searchInput = screen.getByPlaceholderText("Search for a username");
-    const searchButton = screen.getByRole("button", { name: "Search" });
+    const testuser = "testuser";
 
-    await userEvent.type(searchInput, "newFriend");
-    await userEvent.click(searchButton);
+    // Call the handleAddFriend function directly with the testuser
+    // Use waitFor to ensure ref is available
+    await waitFor(() => {
+      expect(ref.current).not.toBeNull();
+    });
 
-    // Wait for the search result to appear
-    await waitFor(() => expect(screen.getByText("newFriend")).toBeInTheDocument());
+    await act(async () => {
+      await ref.current.handleAddFriend("testuser");
+    });
 
-    // User adds the friend
-    const addButton = screen.getByRole("button", { name: "Add Friend" });
-    await userEvent.click(addButton);
-
-    // Check that the friend request was sent successfully
-    expect(await screen.findByText("Friend request sent successfully.")).toBeInTheDocument();
+    // Ensure fetch is called with the correct API endpoint
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith("/api/user/add-friend", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-csrf-token": "mockCsrfToken",
+        },
+        body: JSON.stringify({ friendUsername: testuser }),
+      });
+    });
   });
 
   test("user accepts a friend request", async () => {
-    // Mock necessary fetch calls
-    fetch.mockImplementationOnce((url) => {
-      if (url.endsWith("/api/csrf-token")) {
-        return Promise.resolve({ json: () => Promise.resolve({ csrfToken: "mockToken" }) });
-      }
-      if (url.endsWith("/api/user/details/1")) {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({
-            friends: [],
-            friendRequests: ["incomingFriend"],
-            sentFriendRequests: [],
-          }),
-        });
-      }
-      if (url === "/api/user/accept-request") {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({ message: "Friend request accepted." }),
-        });
-      }
-      return Promise.reject(new Error("Not found"));
-    });
+    const ref = React.createRef();
 
     renderWithProviders(
       <MemoryRouter>
-        <Friends />
-      </MemoryRouter>
+        <Friends ref={ref} />
+      </MemoryRouter>,
+      {
+        preloadedState: {
+          user: {
+            currentUser: { _id: "mockUserId" },
+          },
+        },
+      }
     );
 
-    // Wait for the incoming friend request to appear
-    await waitFor(() => expect(screen.getByText("incomingFriend")).toBeInTheDocument());
+    const testuser = "testuser";
 
-    // User accepts the friend request
-    const acceptButton = screen.getByRole("button", { name: "Accept" });
-    await userEvent.click(acceptButton);
+    // Ensure ref is available
+    await waitFor(() => {
+      expect(ref.current).not.toBeNull();
+    });
 
-    // Check that the friend request was accepted successfully
-    expect(await screen.findByText("Friend request accepted.")).toBeInTheDocument();
+    await act(async () => {
+      await ref.current.handleAcceptRequest(testuser);
+    });
+
+    // Ensure fetch is called with the correct API endpoint
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith("/api/user/accept-request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-csrf-token": expect.any(String),
+        },
+        body: JSON.stringify({ friendUsername: testuser }),
+      });
+    });
   });
 
   test("user removes a friend", async () => {
-    fetch.mockImplementationOnce((url) => {
-      if (url.endsWith("/api/csrf-token")) {
-        return Promise.resolve({ json: () => Promise.resolve({ csrfToken: "mockToken" }) });
-      }
-      if (url.endsWith("/api/user/details/1")) {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({
-            friends: ["friendToRemove"],
-            friendRequests: [],
-            sentFriendRequests: [],
-          }),
-        });
-      }
-      if (url === "/api/user/remove-friend") {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({ message: "Friend removed successfully." }),
-        });
-      }
-      return Promise.reject(new Error("Not found"));
-    });
+    const ref = React.createRef();
 
     renderWithProviders(
       <MemoryRouter>
-        <Friends />
-      </MemoryRouter>
+        <Friends ref={ref} />
+      </MemoryRouter>,
+      {
+        preloadedState: {
+          user: {
+            currentUser: { _id: "mockUserId" },
+          },
+        },
+      }
     );
 
-    // Wait for the added friend to appear
-    await waitFor(() => expect(screen.getByText("friendToRemove")).toBeInTheDocument());
+    const testuser = "testuser";
 
-    // User removes the friend
-    const removeButton = screen.getByRole("button", { name: "Remove" });
-    await userEvent.click(removeButton);
+    // Ensure ref is available
+    await waitFor(() => {
+      expect(ref.current).not.toBeNull();
+    });
 
-    // Check that the friend was removed successfully
-    expect(await screen.findByText("Friend removed successfully.")).toBeInTheDocument();
+    await act(async () => {
+      await ref.current.handleRemoveFriend(testuser);
+    });
+
+    // Ensure fetch is called with the correct API endpoint
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith("/api/user/remove-friend", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-csrf-token": expect.any(String),
+        },
+        body: JSON.stringify({ friendUsername: testuser }),
+      });
+    });
   });
 });

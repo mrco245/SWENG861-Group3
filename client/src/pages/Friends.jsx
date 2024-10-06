@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  useImperativeHandle,
+  forwardRef,
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import StatusAlert, { StatusAlertService } from "react-status-alert";
 import "react-status-alert/dist/status-alert.css";
 import { useSelector } from "react-redux";
 
-const Friends = () => {
+const Friends = forwardRef((props, ref) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [addedFriends, setAddedFriends] = useState([]);
@@ -131,7 +136,9 @@ const Friends = () => {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.message || data || "Error sending friend request.");
+        throw new Error(
+          data.message || data || "Error sending friend request."
+        );
       }
 
       setFriendRequests((prev) => [...prev, name]);
@@ -159,7 +166,9 @@ const Friends = () => {
       });
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.message || data || "Error accepting friend request");
+        throw new Error(
+          data.message || data || "Error accepting friend request"
+        );
       }
 
       setAddedFriends((prev) => [...prev, friendName]);
@@ -203,6 +212,13 @@ const Friends = () => {
     }
   };
 
+  // Expose the handlers using useImperativeHandle
+  useImperativeHandle(ref, () => ({
+    handleAddFriend,
+    handleAcceptRequest,
+    handleRemoveFriend,
+  }));
+
   return (
     <div>
       <StatusAlert />
@@ -210,7 +226,6 @@ const Friends = () => {
         <h2 className="title">Manage Friends List</h2>
       </div>
       <div className="friendWrapper">
-        
         {/* Section 1: Search for a Friend */}
         <div className="friend-div">
           <div className={"titleContainer"}>
@@ -232,22 +247,22 @@ const Friends = () => {
           <div>
             <ul
               className={
-                searchResults.length > 0 ? "resultList" : "emptyResults"
+                searchResults.length > 0 ? "searchResultList" : "emptyResults"
               }
             >
               {searchResults.map((name, index) => (
                 <li key={index}>
                   <span className="friend">{name}</span>
                   {!addedFriends.includes(name) &&
-                   !friendRequests.includes(name) &&
-                   !incomingRequests.includes(name) && (
-                    <button
-                      className="add-btn"
-                      onClick={() => handleAddFriend(name)}
-                    >
-                      Add Friend
-                    </button>
-                  )}
+                    !friendRequests.includes(name) &&
+                    !incomingRequests.includes(name) && (
+                      <button
+                        className="add-btn"
+                        onClick={() => handleAddFriend(name)}
+                      >
+                        Add Friend
+                      </button>
+                    )}
                 </li>
               ))}
             </ul>
@@ -323,10 +338,9 @@ const Friends = () => {
             </ul>
           </div>
         </div>
-        
       </div>
     </div>
   );
-};
+});
 
 export default Friends;

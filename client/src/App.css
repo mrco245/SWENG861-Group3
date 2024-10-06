@@ -452,6 +452,7 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
+.searchResultList,
 .resultList {
     margin-top: 10px;
     list-style-type: none;
