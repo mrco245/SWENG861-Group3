@@ -48,18 +48,16 @@ export default function Header() {
           >
             <Nav>
               {/* use eventKey to show navbar style from react bootstrap */}
-              <Nav.Link as={Link} to="/fitness" eventKey="1">
-                Fitness
+              <Nav.Link as={Link} to="/fitness/home" eventKey="1">
+                Fitness Tracker
               </Nav.Link>
-              <Nav.Link as={Link} to="/fitness/history" eventKey="2">
-                Fitness History
-              </Nav.Link>
-              <Nav.Link as={Link} to="/healthhomepage" eventKey="4">
+              <Nav.Link as={Link} to="/health/home" eventKey="2">
                 Health Tracker
               </Nav.Link>
-              <Nav.Link as={Link} to="/friends" eventKey="5">
+              <Nav.Link as={Link} to="/friends" eventKey="3">
                 Friends
-              </Nav.Link>              <Nav.Link as={Link} to="/profile" eventKey="4">
+              </Nav.Link>
+              <Nav.Link as={Link} to="/profile" eventKey="4">
                 Profile
               </Nav.Link>
               <Nav.Link onClick={handleSignOut}>Logout </Nav.Link>

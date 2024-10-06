@@ -16,8 +16,8 @@ export default function Home() {
         {currentUser ?
           (
             <>
-             <button className="home-btn" onClick={() => navigate("/fitness/history")}>Show Fitness History</button>
-             <button className="home-btn" onClick={() => navigate("/healthhomepage")}>Show Health Tracker</button>
+             <button className="home-btn" onClick={() => navigate("/fitness/home")}>Show Fitness Tracker</button>
+             <button className="home-btn" onClick={() => navigate("/health/home")}>Show Health Tracker</button>
              <button className="home-btn" onClick={() => navigate("/friends")}>Show Friends</button>
             </>
         ) :

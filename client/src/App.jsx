@@ -5,6 +5,7 @@ import Health from "./pages/Health";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import HealthHomepage from "./pages/HealthHomepage";
+import FitnessHomepage from "./pages/FitnessHomepage";
 import BMIHistory from "./pages/BMIHistory";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
@@ -32,7 +33,8 @@ export default function App() {
           <Route path="/fitness/cardio" element={<Cardio />}/>
           <Route path="/fitness/resistance" element={<Resistance />}/>
           <Route path="/fitness/:type/:id" element={<SingleExercise />} />
-          <Route path='/healthhomepage' element={<HealthHomepage />} />
+          <Route path='/health/home' element={<HealthHomepage />} />
+          <Route path='/fitness/home' element={<FitnessHomepage />} />
           <Route path='/bmihistory' element={<BMIHistory />} />
           <Route path='/health' element={<Health />} />
         </Route>

@@ -17,6 +17,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 33%;
+  padding: 10px;
+}
+
 /* ---------------------------1. header--------------------------------- */
 .heart-icon {
   height: 24px;

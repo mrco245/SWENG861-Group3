@@ -8,7 +8,6 @@ export default function BMIHistory() {
   const [bmiHistory, setBmiHistory] = useState([]);
   const [csrfToken, setCsrfToken] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchCsrfToken = async () => {
@@ -44,7 +43,6 @@ export default function BMIHistory() {
           throw new Error(data.message || "Failed to fetch BMI history.");
         }
       } catch (err) {
-        setError(err.message);
         console.error("Error fetching BMI history:", err);
       }
       setLoading(false);
@@ -69,19 +67,17 @@ export default function BMIHistory() {
         throw new Error("Failed to delete BMI entry.");
       }
     } catch (err) {
-      setError(err.message);
       console.error("Error deleting BMI entry:", err);
     }
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="history">
+    <div>
       <div className="d-flex flex-column align-items-center">
       <h3 className="title">BMI History</h3>
-      {bmiHistory.length > 0 ? (
+      {bmiHistory.length ? (
         <ul className="bmi-history-list">
           {bmiHistory.map((entry, index) => (
             <li key={index} className="bmi-history-item">
@@ -95,7 +91,7 @@ export default function BMIHistory() {
         </ul>
       ) : (
         <div>
-        <h3 className="history-text">No exercise data yet...</h3>
+        <h3 className="history-text">No bmi data yet...</h3>
         <Link to="/health">
           <button className="home-btn">Calculate BMI</button>
         </Link>
