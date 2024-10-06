@@ -54,10 +54,12 @@ export default function Header() {
               <Nav.Link as={Link} to="/fitness/history" eventKey="2">
                 Fitness History
               </Nav.Link>
-              <Nav.Link as={Link} to="/healthhomepage" eventKey="3">
+              <Nav.Link as={Link} to="/healthhomepage" eventKey="4">
                 Health Tracker
               </Nav.Link>
-              <Nav.Link as={Link} to="/profile" eventKey="4">
+              <Nav.Link as={Link} to="/friends" eventKey="5">
+                Friends
+              </Nav.Link>              <Nav.Link as={Link} to="/profile" eventKey="4">
                 Profile
               </Nav.Link>
               <Nav.Link onClick={handleSignOut}>Logout </Nav.Link>

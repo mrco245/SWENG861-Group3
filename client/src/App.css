@@ -97,7 +97,31 @@ code {
   font-weight: 800;
   margin-bottom: 1%;
 }
-
+.add-btn {
+    margin-left: 10px;
+    font-weight: 800;
+    margin-bottom: 1%;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    padding: 4px 8px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.small-delete-btn {
+    margin-left: 10px;
+    font-weight: 800;
+    margin-bottom: 1%;
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+    padding: 4px 8px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.add-btn:hover,
 .home-btn:hover,
 .signup-btn:hover,
 .submit-btn:hover {
@@ -145,9 +169,13 @@ code {
 }
 
 /* --------------------------------- 4. history page---------------------------------   */
+.titleContainer{
+    text-align: center;
+}
 .title {
   margin: 30px auto 20px auto;
   font-weight: 900;
+  display: inline-block;
 }
 
 .title:after {
@@ -340,6 +368,7 @@ code {
   margin: 10px auto;
 }
 
+.small-delete-btn:hover,
 .delete-btn:hover {
   background-color: rgb(211, 5, 5);
 }
@@ -371,4 +400,74 @@ code {
 }
 .react-confirm-alert-button-group button:last-child {
   background-color: red;
+}
+
+/* ---------------------------------8.friends page--------------------------------- */
+
+.friend-div {
+    flex: 1;
+    border-radius: 10px;
+    padding: 20px;
+    width: 240px;
+    margin: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    color: black;
+    height: auto;
+    overflow-y: auto;
+}
+
+.friendWrapper {
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    max-width: 80%;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow-x: hidden;
+    gap: 20px;
+}
+
+
+.titleContainer {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.searchResultList,
+.resultList {
+    margin-top: 10px;
+    list-style-type: none;
+    border-radius: 5px;
+    padding: 0;
+    padding: 10px;
+    border: 1px solid grey; 
+}
+
+.emptyResults {
+    border: none;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
