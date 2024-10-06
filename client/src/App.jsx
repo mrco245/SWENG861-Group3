@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Friends from "./pages/Friends";
 import Health from "./pages/Health";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -31,6 +32,7 @@ export default function App() {
         <Route path='/bmihistory' element={<BMIHistory />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
+          <Route path='/friends' element={<Friends />} />
           <Route path="/fitness" element={<Fitness />}/>
           <Route path="/fitness/history" element={<FitnessHistory />}/>
           <Route path="/fitness/cardio" element={<Cardio />}/>

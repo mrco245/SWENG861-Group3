@@ -1,44 +1,47 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
-  {
+const userSchema = new mongoose.Schema({
     username: {
-      type: String,
-      required: true,
-      unique: true,
+        type: String,
+        required: true,
+        unique: true,
     },
     email: {
-      type: String,
-      required: true,
-      unique: true,
+        type: String,
+        required: true,
+        unique: true,
     },
     password: {
-      type: String,
-      required: true,
+        type: String,
+        required: true,
+    },
+    friends: {
+        type: Array,
+    },
+    friendRequests: {
+        type: Array,
+    },
+    sentFriendRequests: {
+        type: Array,
     },
     profilePicture: {
-      type: String,
+        type: String,
     },
-
-     
-     bmi: [
-      {
+    bmi: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "BMI"  // Reference the BMI model
-      }
-    ]
-,
+        ref: "BMI" // Reference the BMI model
+    }],
     cardio: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Cardio"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Cardio"
     }],
     resistance: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Resistance"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Resistance"
     }]
-  },
-  { timestamps: true }
-);
+}, {
+    timestamps: true
+});
 
 const User = mongoose.model("User", userSchema, "users");
 

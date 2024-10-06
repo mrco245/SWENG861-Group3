@@ -43,7 +43,7 @@ export default function SignIn() {
       if (data.success === false) {
         dispatch(signInFailure(data));
         return StatusAlertService.showError(
-          data.message || "Signin failed. Please try again."
+          data.message || "Sign in failed. Please try again."
         );
       }
       dispatch(signInSuccess(data));
