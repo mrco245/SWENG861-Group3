@@ -140,20 +140,20 @@ export default function Profile() {
         </form>
         <div className="flex justify-between">
           {/* delete account with hover animation */}
-          <span
+          <button
             onClick={handleDeleteAccount}
-            className="text-red-500 cursor-pointer hover:underline"
+            className="delete-btn"
           >
             Delete Account
-          </span>
+          </button>
 
           {/* logout with hover animation */}
-          <span
+          <button
             onClick={handleSignOut}
-            className="text-blue-500 cursor-pointer hover:underline"
+            className="logout-btn"
           >
             Logout
-          </span>
+          </button>
         </div>
       </div>
     </div>
