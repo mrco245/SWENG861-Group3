@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "../styles/BMIHistory.css";
+import { Link } from "react-router-dom";
 
 export default function BMIHistory() {
   const { currentUser } = useSelector((state) => state.user);
   const [bmiHistory, setBmiHistory] = useState([]);
   const [csrfToken, setCsrfToken] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchCsrfToken = async () => {
@@ -43,7 +43,6 @@ export default function BMIHistory() {
           throw new Error(data.message || "Failed to fetch BMI history.");
         }
       } catch (err) {
-        setError(err.message);
         console.error("Error fetching BMI history:", err);
       }
       setLoading(false);
@@ -68,18 +67,17 @@ export default function BMIHistory() {
         throw new Error("Failed to delete BMI entry.");
       }
     } catch (err) {
-      setError(err.message);
       console.error("Error deleting BMI entry:", err);
     }
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="bmi-history-container">
-      <h1 className="bmi-history-title">BMI History</h1>
-      {bmiHistory.length > 0 ? (
+    <div>
+      <div className="d-flex flex-column align-items-center">
+      <h3 className="title">BMI History</h3>
+      {bmiHistory.length ? (
         <ul className="bmi-history-list">
           {bmiHistory.map((entry, index) => (
             <li key={index} className="bmi-history-item">
@@ -92,8 +90,15 @@ export default function BMIHistory() {
           ))}
         </ul>
       ) : (
-        <p>No BMI entries found.</p>
+        <div>
+        <h3 className="history-text">No bmi data yet...</h3>
+        <Link to="/health">
+          <button className="home-btn">Calculate BMI</button>
+        </Link>
+      </div>
+        
       )}
+    </div>
     </div>
   );
 }

@@ -17,6 +17,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 33%;
+  padding: 10px;
+}
+
 /* ---------------------------1. header--------------------------------- */
 .heart-icon {
   height: 24px;
@@ -69,6 +80,12 @@ code {
   height: 100vh; /* 100% of the viewport height */
 }
 
+.home-icon {
+  width: 100px; /* Adjust the size of the image */
+  height: 100px;
+  padding: auto;
+}
+
 .home {
   position: absolute;
   left: 50%;
@@ -97,6 +114,7 @@ code {
   font-weight: 800;
   margin-bottom: 1%;
 }
+
 .add-btn {
     margin-left: 10px;
     font-weight: 800;
@@ -121,6 +139,7 @@ code {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }
+
 .add-btn:hover,
 .home-btn:hover,
 .signup-btn:hover,
@@ -365,12 +384,27 @@ code {
   padding: 5px 10px;
   font-weight: bold;
   font-size: 15px;
-  margin: 10px auto;
+  margin-bottom: 5%;
+}
+
+.logout-btn {
+  border: none;
+  border-radius: 6px;
+  background-color: var(--second-color);
+  color: black;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 5%;
 }
 
 .small-delete-btn:hover,
 .delete-btn:hover {
   background-color: rgb(211, 5, 5);
+}
+
+.logout-btn:hover {
+  background-color: rgb(2, 175, 238);
 }
 
 .react-confirm-alert-overlay {
