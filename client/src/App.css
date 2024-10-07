@@ -80,6 +80,12 @@ code {
   height: 100vh; /* 100% of the viewport height */
 }
 
+.home-icon {
+  width: 100px; /* Adjust the size of the image */
+  height: 100px;
+  padding: auto;
+}
+
 .home {
   position: absolute;
   left: 50%;
