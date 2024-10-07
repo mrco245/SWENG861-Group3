@@ -146,6 +146,8 @@ export default function Profile() {
           >
             Delete Account
           </button>
+          </div>
+          <div className="flex justify-between">
 
           {/* logout with hover animation */}
           <button

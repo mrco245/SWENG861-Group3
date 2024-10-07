@@ -384,7 +384,7 @@ code {
   padding: 5px 10px;
   font-weight: bold;
   font-size: 15px;
-  margin: 10px auto;
+  margin-bottom: 5%;
 }
 
 .logout-btn {
@@ -395,7 +395,7 @@ code {
   padding: 5px 10px;
   font-weight: bold;
   font-size: 15px;
-  margin: 10px auto;
+  margin-bottom: 5%;
 }
 
 .small-delete-btn:hover,
